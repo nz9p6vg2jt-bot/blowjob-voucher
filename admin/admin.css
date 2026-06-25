@@ -1,0 +1,48 @@
+.admin-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.admin-panel {
+  width: min(100%, 520px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  background:
+    linear-gradient(rgba(255, 251, 244, 0.94), rgba(255, 247, 236, 0.98)),
+    url("../assets/images/paper-texture.png") center / cover;
+  box-shadow: var(--shadow);
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin: 22px 0;
+  font: 800 0.82rem/1 ui-sans-serif, system-ui, sans-serif;
+  color: var(--rose);
+}
+
+.field input {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  font: 700 1rem/1 ui-sans-serif, system-ui, sans-serif;
+  color: var(--ink);
+  background: #fffdf7;
+}
+
+.admin-tools {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.danger {
+  color: #8f2430;
+  border-color: rgba(143, 36, 48, 0.28);
+}

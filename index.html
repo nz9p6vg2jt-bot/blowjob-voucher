@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#7f2f44" />
+    <title>Blowjob Vouchers</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=3" />
+  </head>
+  <body>
+    <main class="app-shell" id="app">
+      <section class="book-stage" aria-labelledby="cover-title">
+        <div class="book" id="book">
+          <button class="book-cover" id="openBook" type="button" aria-label="Open voucher book">
+            <span class="cover-kicker">Issued exclusively to</span>
+            <strong class="cover-recipient" id="coverRecipient">His Name</strong>
+            <span class="cover-rule"></span>
+            <span class="cover-title" id="cover-title">Blowjob Vouchers</span>
+            <span class="cover-subtitle" id="coverSubtitle">5 redeemable vouchers</span>
+            <span class="cover-meta">
+              <span>
+                <small>Issue Date</small>
+                <b id="coverDate">25 June 2026</b>
+              </span>
+              <span>
+                <small>Edition</small>
+                <b id="coverEdition">1 of 1</b>
+              </span>
+            </span>
+            <span class="open-cue">Tap to Open</span>
+          </button>
+
+          <div class="book-pages" aria-live="polite">
+            <header class="app-header">
+              <div>
+                <p class="eyebrow" id="issuerLine">From Taylah</p>
+                <h1 id="insideTitle">A little book of things I owe you</h1>
+              </div>
+              <button class="icon-button" id="installApp" type="button" hidden aria-label="Install app" title="Install app">
+                <span aria-hidden="true">+</span>
+              </button>
+            </header>
+
+            <p class="intro-copy" id="introText"></p>
+
+            <section class="status-strip" aria-label="Voucher status">
+              <div>
+                <span class="status-label">Redeemed</span>
+                <strong id="redeemedCount">0</strong>
+              </div>
+              <div>
+                <span class="status-label">Remaining</span>
+                <strong id="remainingCount">5</strong>
+              </div>
+              <div>
+                <span class="status-label">Total</span>
+                <strong id="totalCount">5</strong>
+              </div>
+            </section>
+
+            <section class="ticket-wrap">
+              <article class="ticket" id="ticket">
+                <div class="ticket-edge" aria-hidden="true"></div>
+                <div class="ticket-body">
+                  <p class="ticket-label" id="ticketLabel">Next voucher</p>
+                  <div class="voucher-icon" id="voucherIcon" aria-hidden="true"></div>
+                  <h2 id="voucherTitle">Ready when you are</h2>
+                  <p id="voucherDescription">Open the next page to reveal voucher number one.</p>
+                  <p class="serial" id="voucherSerial">Edition 1 of 1</p>
+                </div>
+                <div class="stamp" id="stamp" aria-hidden="true">Redeemed</div>
+              </article>
+            </section>
+
+            <div class="actions">
+              <button class="primary-button" id="redeemButton" type="button">Redeem Voucher</button>
+              <button class="secondary-button" id="historyButton" type="button">View History</button>
+            </div>
+
+            <section class="history-panel" id="historyPanel" hidden>
+              <h2>Redemption History</h2>
+              <ol id="historyList"></ol>
+            </section>
+
+            <section class="qr-panel">
+              <div>
+                <h2>QR Code</h2>
+                <p id="qrCopy">Use this when the app has a live link.</p>
+              </div>
+              <a class="secondary-button" id="qrLink" href="./assets/images/qr-local.svg" download>Download QR</a>
+            </section>
+
+            <footer>
+              <a href="./admin/">Admin</a>
+            </footer>
+          </div>
+        </div>
+      </section>
+      <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    </main>
+
+    <script src="./config.js?v=3"></script>
+    <script src="./app.js?v=3"></script>
+  </body>
+</html>
