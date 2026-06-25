@@ -60,7 +60,7 @@ let deferredInstallPrompt;
 function loadState() {
   const fallback = { redeemed: [], opened: false };
   try {
-    return { ...fallback, ...JSON.parse(localStorage.getItem(stateKey)) };
+    return { ...fallback, ...JSON.parse(localStorage.getItem(stateKey)), opened: false };
   } catch {
     return fallback;
   }
@@ -230,7 +230,6 @@ function launchConfetti() {
 
 els.openBook.addEventListener("click", () => {
   state.opened = true;
-  saveState(state);
   render();
 });
 
