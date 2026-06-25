@@ -1,10 +1,10 @@
-const CACHE_NAME = "redeem-to-receive-v3";
+const CACHE_NAME = "redeem-to-receive-v4";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=3",
-  "./app.js?v=3",
-  "./config.js?v=3",
+  "./styles.css?v=4",
+  "./app.js?v=4",
+  "./config.js?v=4",
   "./manifest.json",
   "./assets/icons/icon.svg",
   "./assets/images/paper-texture.png",
