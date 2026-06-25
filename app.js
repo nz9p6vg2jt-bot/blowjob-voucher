@@ -70,6 +70,20 @@ function saveState(state) {
   localStorage.setItem(stateKey, JSON.stringify(state));
 }
 
+function clearOldOfflineCache() {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => registration.unregister());
+    });
+  }
+
+  if ("caches" in window) {
+    caches.keys().then((keys) => {
+      keys.filter((key) => key.startsWith("redeem-to-receive")).forEach((key) => caches.delete(key));
+    });
+  }
+}
+
 function formatDate(value) {
   return new Intl.DateTimeFormat(undefined, {
     day: "numeric",
@@ -254,11 +268,6 @@ els.installApp.addEventListener("click", async () => {
   els.installApp.hidden = true;
 });
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js");
-  });
-}
-
+clearOldOfflineCache();
 hydrateStaticText();
 render();
