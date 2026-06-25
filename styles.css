@@ -1,0 +1,494 @@
+:root {
+  color-scheme: light;
+  --ink: #321d22;
+  --muted: #7d6468;
+  --paper: #fff9ef;
+  --paper-deep: #f3dfca;
+  --rose: #7f2f44;
+  --rose-dark: #5f2435;
+  --gold: #b98242;
+  --green: #426654;
+  --line: rgba(72, 42, 38, 0.18);
+  --shadow: 0 24px 70px rgba(63, 31, 28, 0.22);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255, 249, 239, 0.74), rgba(255, 245, 233, 0.86)),
+    url("./assets/images/paper-texture.png") center / cover fixed,
+    #f7ece0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+  position: relative;
+  overflow: hidden;
+}
+
+.book-stage {
+  width: min(100%, 520px);
+  perspective: 1800px;
+}
+
+.book {
+  position: relative;
+  min-height: 720px;
+  filter: drop-shadow(var(--shadow));
+}
+
+.book-cover,
+.book-pages {
+  min-height: 720px;
+  width: 100%;
+  border: 1px solid rgba(77, 40, 40, 0.18);
+  border-radius: 8px;
+}
+
+.book-cover {
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 42px 30px;
+  color: #fffaf1;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 231, 190, 0.18), transparent 28%),
+    linear-gradient(145deg, #7f2f44, #46232d 72%);
+  box-shadow: inset 0 0 0 10px rgba(255, 249, 239, 0.09), inset 0 0 0 11px rgba(255, 249, 239, 0.2);
+  transform-origin: left center;
+  transition: transform 900ms cubic-bezier(0.2, 0.72, 0.18, 1), opacity 300ms ease 650ms;
+}
+
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 239, 204, 0.45);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.book-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 46px;
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.24), rgba(255, 255, 255, 0.06), transparent);
+  pointer-events: none;
+}
+
+.book.is-open .book-cover {
+  transform: rotateY(-105deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cover-kicker,
+.cover-subtitle,
+.open-cue,
+.eyebrow,
+.ticket-label,
+.status-label,
+.serial {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cover-kicker,
+.cover-subtitle {
+  font-size: 0.78rem;
+}
+
+.cover-recipient {
+  font-size: clamp(2.25rem, 9vw, 4.5rem);
+  line-height: 0.98;
+  text-align: center;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.cover-rule {
+  width: 64%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 239, 204, 0.74), transparent);
+  margin: 10px 0;
+}
+
+.cover-title {
+  font-size: clamp(1.6rem, 7vw, 3rem);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.cover-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: min(100%, 360px);
+  margin-top: 22px;
+}
+
+.cover-meta span {
+  border-top: 1px solid rgba(255, 239, 204, 0.4);
+  padding-top: 12px;
+}
+
+.cover-meta small,
+.cover-meta b {
+  display: block;
+  font-size: 0.76rem;
+}
+
+.cover-meta small {
+  color: rgba(255, 250, 241, 0.7);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  margin-bottom: 4px;
+}
+
+.open-cue {
+  position: absolute;
+  bottom: 38px;
+  font-size: 0.72rem;
+  color: rgba(255, 250, 241, 0.74);
+}
+
+.book-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  background:
+    linear-gradient(rgba(255, 251, 244, 0.92), rgba(255, 247, 236, 0.96)),
+    url("./assets/images/paper-texture.png") center / cover;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--rose);
+  font-size: 0.74rem;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 8vw, 3.35rem);
+  line-height: 0.98;
+}
+
+.intro-copy {
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 1.02rem;
+}
+
+.icon-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fffaf2;
+  color: var(--rose);
+  font: 700 1.4rem/1 ui-sans-serif, system-ui, sans-serif;
+}
+
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 250, 242, 0.72);
+}
+
+.status-strip div {
+  min-width: 0;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.status-strip div + div {
+  border-left: 1px solid var(--line);
+}
+
+.status-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.64rem;
+}
+
+.status-strip strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 1.45rem;
+}
+
+.ticket-wrap {
+  position: relative;
+}
+
+.ticket {
+  min-height: 255px;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(127, 47, 68, 0.22);
+  border-radius: 8px;
+  background: #fffdf7;
+  box-shadow: 0 15px 35px rgba(73, 41, 36, 0.12);
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.2, 0.72, 0.18, 1);
+}
+
+.ticket.is-flipping {
+  transform: rotateX(8deg) scale(0.985);
+}
+
+.ticket-edge {
+  background:
+    radial-gradient(circle at 50% 10px, transparent 8px, var(--rose) 8.5px) 0 0 / 18px 24px,
+    var(--rose);
+}
+
+.ticket-body {
+  padding: 25px 24px 24px;
+  position: relative;
+}
+
+.ticket-label {
+  color: var(--green);
+  font-size: 0.72rem;
+  margin-bottom: 18px;
+}
+
+.voucher-icon {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(185, 130, 66, 0.35);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  background: #fff8ec;
+}
+
+.voucher-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold);
+}
+
+.ticket h2 {
+  font-size: clamp(1.75rem, 7vw, 2.65rem);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.ticket p:not(.ticket-label):not(.serial) {
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 31rem;
+}
+
+.serial {
+  margin: 22px 0 0;
+  font-size: 0.68rem;
+  color: var(--rose);
+}
+
+.stamp {
+  position: absolute;
+  top: 26px;
+  right: 18px;
+  transform: rotate(11deg) scale(0.8);
+  border: 2px solid rgba(127, 47, 68, 0.7);
+  border-radius: 6px;
+  color: rgba(127, 47, 68, 0.72);
+  padding: 8px 12px;
+  font: 800 0.78rem/1 ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 260ms ease, transform 320ms ease;
+}
+
+.stamp.is-visible {
+  opacity: 1;
+  transform: rotate(11deg) scale(1);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 48px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font: 800 0.9rem/1 ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.primary-button {
+  color: #fffaf2;
+  background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+  box-shadow: 0 12px 26px rgba(127, 47, 68, 0.25);
+}
+
+.primary-button:disabled {
+  cursor: default;
+  background: #a99194;
+  box-shadow: none;
+}
+
+.secondary-button {
+  color: var(--rose);
+  background: rgba(255, 250, 242, 0.78);
+  border-color: var(--line);
+}
+
+.history-panel,
+.qr-panel {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.history-panel h2,
+.qr-panel h2 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.history-panel ol {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.history-panel li + li {
+  margin-top: 8px;
+}
+
+.qr-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.qr-panel p {
+  margin-bottom: 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+}
+
+footer a {
+  color: var(--muted);
+  font: 700 0.76rem/1 ui-sans-serif, system-ui, sans-serif;
+  text-decoration: none;
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    padding-inline: 10px;
+  }
+
+  .book,
+  .book-cover,
+  .book-pages {
+    min-height: calc(100svh - 20px);
+  }
+
+  .book-pages {
+    padding: 22px 18px;
+  }
+
+  .actions,
+  .qr-panel {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .secondary-button {
+    width: 100%;
+  }
+
+  .ticket-body {
+    padding-right: 18px;
+  }
+
+  .stamp {
+    top: 18px;
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+  }
+}
