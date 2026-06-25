@@ -5,7 +5,7 @@ window.VOUCHER_CONFIG = {
   issuerName: "Taylah",
   issueDate: "25 June 2026",
   edition: "1 of 1",
-  deployUrl: "",
+  deployUrl: "https://nz9p6vg2jt-bot.github.io/blowjob-voucher/",
   adminPasscode: "2506",
   introTitle: "You asked for a QR code, I said I could do better",
   introText:
